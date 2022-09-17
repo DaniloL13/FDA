@@ -1,11 +1,10 @@
 # Aplicaciones de Datos Funcionales
 
- Modelos de Regresión Funcional
 Table of Contents
 =================
 
 * [Introducción](#introducción)
-* [Procesos Estocásticos](#procesos-estocasticos)
+* [Definiciones](#definiciones)
     * [Enfoques](#enfoques)
 * [Enfoque clásico (descomposición)](#enfoque-clásico)
 * [Enfoque de los Alisados o Suavizados](#enfoque-de-los-alisados-o-suavizados)
@@ -30,35 +29,42 @@ El Análisis de Datos Funcionales \textit{(FDA)} resulta ser una herramienta est
 
 En este libro se proveerá la introducción y la aplicación del Análisis de Datos Funcionales, desde cómo construir la estructura funcional de la información hasta la implementación de modelos estadísticos de regresión bajo el enfoque funcional; afortunadamente, la mayoría de las técnicas que se estudiarán en el presente libro tienen su tratamiento informático, siendo el software estadístico \texttt{R} uno de los más utilizados para la aplicación del \textit{FDA}, en particular, gracias a  las librerías \texttt{fda} y \texttt{fda.usc}. 
 
+## Definiciones
 
-**Componentes de una serie temporal**
+\begin{definition}[Variable Aleatoria Funcional]
+Se dice que una variable  \(\{\mathcal{X}(t)\}_{t\in[0,T]}\) definida sobre un espacio de probabilidad $(\Omega,A,P)$ es una variable funcional si toma valores en un espacio infinito dimensional (espacio funcional), es decir, un espacio normado o semi-normado completo. 
+\end{definition}
 
-Los componentes que forman una serie temporal son los siguientes:
+\begin{definition}
+A una observación de \(\chi_i\) de \(\mathcal{X}(t)\), se le llama dato funcional.
+\end{definition}
+%%%%%%%%%%%%%%%%5
+\begin{definition}
+Sea \(\Omega\) un subconjunto compacto y medible de \(\mathbb{R}\) con medida de Lebesgue positiva. Se define el espacio de Hilbert \(\{\mathcal{L}^2[T]:\; T=[0,T]\in \Omega\}\) que es el espacio de funciones cuadrado integrable sobre el intervalo real \(T\) y se determina por:
+\[\mathcal{L}^2[T]=\left\{f:T\rightarrow\mathbb{R}:\int_T f ^2(t)dt < \infty \right\}  \]
+cuyo producto escalar usual esta definido por: 
+\begin{equation*}
+    \langle f,g \rangle = \int_T f(t)g(t)dt \hspace{0.4cm} \forall f,g \in \mathcal{L}^2(T)
+\end{equation*}
+Este producto es el equivalente al producto interno de vectores en $\mathbb{R}^n$, 
+\end{definition}
+%%%%%%%%%%%%%%%%%%%%%%%%555
 
-- Tendencia: Se puede definir como un cambio a largo plazo que se produce en relación al nivel medio, o el cambio a largo plazo de la media. La tendencia se identifica con un movimiento suave de la serie a largo plazo.
+La notación del producto interno se enfatiza para considerar las conexiones y similitudes entre el contexto multivariante y funcional, pues siempre hay que tomar en cuenta la naturaleza de los datos, ya sean vectores o funciones; por lo cual, lo importante es cómo se define el producto interno para que se adapte a los tipos de datos. En el Apéndice \ref{apen:ProdInner}, se presentan conceptos básicos sobre el {\it producto interno}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-![image](https://user-images.githubusercontent.com/51028737/113071715-90708000-9182-11eb-83d1-aca5b977a295.png)
+A lo largo del contenido se presentará la sintaxis en el programa \texttt{RStudio}, en particular, utilizando las librerías {\tt fda} \citep{Ramsay2009} y {\tt fda.usc} \citep{FebreroBande2012}, las cuales se complementan muy bien para desarrollar varias técnicas. Para empezar es la función \texttt{fdata} convierte un objeto de datos de clase: {\tt fd, fds, fts, sfts} o  formatos de tipo {\tt vector, matrix, data.frame} en un objeto de clase \texttt{fdata}.
 
-- Estacionalidad: Se la  identifica como un movimiento suave de la serie a largo plazo, es decir, es el comportamiento recursivo o patrón  que responde a las mismas fechas en el tiempo, durante  algunos periodos.
-
-![image](https://user-images.githubusercontent.com/51028737/113071742-9e260580-9182-11eb-8d18-1256b2c4610a.png)
-
-
-- Ciclo: Es la fluctuación en forma de onda alrededor de la tendencia.Se caracteriza porque su duración es irregular.
-
-![image](https://user-images.githubusercontent.com/51028737/113071770-aed67b80-9182-11eb-868c-ceff1b3ba2c0.png)
+Cabe notar que lo presentado aquí, no es un único procedimiento a seguir, sino una herramienta proporcionada para orientar a los lectores. En primer lugar, se instalan y cargan las librerías a utilizar a lo largo del libro de la siguiente manera:
 
 
-- Irregular: Esta componente no responde a ningún patrón o comportamiento sistemático sino que es el resultado de cuestiones  fortuitas implícitas de la serie.
+\begin{lstlisting}[language=R]
+install.packages('fda')
+install.packages('fda.usc')
+library(fda)
+library(fda.usc)
+\end{lstlisting}
 
-![image](https://user-images.githubusercontent.com/51028737/113071115-55218180-9181-11eb-80b2-a56f7f33a414.png)
-
-
-## Procesos Estocásticos
-
-Un proceso estocástico \((𝒙_𝒕)\) es una sucesión de variables  aleatorias ordenadas en el tiempo (en el caso de series temporales). Por lo que, las series temporales se definen como un caso particular de los procesos estocásticos.
-
-Lo ideal es tener una serie de tiempo con media y varianza (más o menos) constante.
 
 **Tipos de series temporales**
 
