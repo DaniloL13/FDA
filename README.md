@@ -5,9 +5,9 @@ Table of Contents
 
 * [Introducción](#introducción)
 * [Definiciones](#definiciones)
-* [Método de Suavizamiento](#método-de-suavizamiento)
+* [Métodos de Suavizamiento](#métodos-de-suavizameinto)
 * [Modelos de Regresión](#modelos-de-regresión)
-* [Predicción de Riesgo País en Ecuador](#predicción-de-riesgo-país-en-Ecuador)
+* [Predicción del Riesgo País en Ecuador](#prédicción-del-riesgo-país-en-ecuador)
 * [Predicción de la Precipitación en Ecuador](#predicción-de-la-precipitación-en-ecuador)
 * [Bibliografía](#bibliografía)
 
@@ -75,7 +75,7 @@ En general los modelos de regresión se utilizan para estudiar la relación entr
 Por estas razones, se analizará teóricamente los Modelo de Regresión Lineal Funcional \textit{(FLR)} con Respuesta Escalar tales como: el modelo \textit{FLR} con Representación en Bases detallado en \cite{Ramsay2009}, el modelo \textit{FLR} con Base por Componentes Principales  Funcionales \textit{(FPC)} propuesto por \cite{Cardot2006}, el modelo \textit{FLR} con Base por Mínimos Cuadrados Parciales Funcionales \textit{(FPLS)} planteado en \cite{Preda2005} y la adaptación del modelo \textit{FLR} con Representación en Bases usando dos covariables funcionales. 
 
 
-## Riego Pais
+## Predicción del Riego Pais en Ecuador
 
 Uno de los indicadores catalogado como el termómetro de la salud de una economía es el {\it riesgo país}. De acuerdo a \cite{Lapitz} este indicador mide la perspectiva de los mercados internacionales frente al cumplimiento de las obligaciones del país, acarreando impactos políticos sociales y económicos, como por ejemplo el nivel de incertidumbre para otorgar un financiamiento al país. Por lo tanto, cuanto más bajo este indicador, los inversionistas  tendrán más confianza de invertir.
 
@@ -102,7 +102,7 @@ Se muestra la curva pronosticada junto con bandas de confianza a un nivel del 90
 ![08BootPeor](https://user-images.githubusercontent.com/51028737/190864599-029ca1f3-7425-4cc5-a4af-82063463aba1.png)
 
 
-## Predicción de la Precipitación
+## Predicción de la Precipitación en Ecuador
 
 
 Para esta aplicación se analizan las variables meteorológicas con la finalidad de estimar la Precipitación en los cantones con más influyentes en la productividad agrícola del maíz en Ecuador mediante modelos \textit{FLR} de tal manera se pueda evaluar, validar y seleccionar el mejor ajuste. En este sentido, la precipitación, la temperatura y la velocidad del viento son las variables meteorológicas seleccionadas que tienen influencia directa en la productividad del cultivo y fundamentales para determinar el balance hídrico \citep{FAO1977}.
