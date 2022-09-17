@@ -7,7 +7,7 @@ Table of Contents
 * [Definiciones](#definiciones)
 * [Método de Suavizamiento](#método-de-suavizamiento)
 * [Modelos de Regresión](#modelos-de-regresión)
-* [Riesgo País](#riesgo-país)
+* [Predicción de Riesgo País en Ecuador](#predicción-de-riesgo-país-en-Ecuador)
 * [Predicción de la Precipitación en Ecuador](#predicción-de-la-precipitación-en-ecuador)
 * [Bibliografía](#bibliografía)
 
@@ -77,6 +77,31 @@ Por estas razones, se analizará teóricamente los Modelo de Regresión Lineal F
 
 ## Riego Pais
 
+Uno de los indicadores catalogado como el termómetro de la salud de una economía es el {\it riesgo país}. De acuerdo a \cite{Lapitz} este indicador mide la perspectiva de los mercados internacionales frente al cumplimiento de las obligaciones del país, acarreando impactos políticos sociales y económicos, como por ejemplo el nivel de incertidumbre para otorgar un financiamiento al país. Por lo tanto, cuanto más bajo este indicador, los inversionistas  tendrán más confianza de invertir.
+
+El riesgo país, visto de otra forma, determina la predisposición de un Estado frente a sus obligaciones, orientado a resguardar la rentabilidad de los inversionistas, \cite{Calahorrano}.
+
+El \textit{EMBI}, introducido y calculado en 1990 por la consultora internacional JPMorgan Chase \& Co.\footnote{Empresa líder en servicios financieros para consumidores y pequeñas empresas, en banca de inversión, en gestión de activos, etc.}, se basa en la tendencia de la deuda externa de cada país. Por lo cual, mientras una baja certeza de que el país asumirá con sus obligaciones, más alto será el \textit{EMBI} del país y viceversa, \cite{Lazo}.
+
+### Representación Funcional
+
+Las puntuaciones diarias del indicador del riesgo país del Ecuador desde el año 2000 hasta el año 2020, se obtuvieron de la página oficial del Banco Central del Ecuador, \cite{BCE}. Toda esta información se la organizó en una base de datos con 365 filas (del 01 de enero al 31 de diciembre) y 21 columnas (del año 2000 al 2020).
+
+![06DF](https://user-images.githubusercontent.com/51028737/190864482-81a8be86-abbd-4c6a-a83a-0c7afec6475d.png)
+
+### Resultados de Predicción
+
+Se muestra la curva pronosticada junto con bandas de confianza a un nivel del 90\%. La gráfica proporciona el comportamiento de las puntuaciones que podrían darse a lo largo del tiempo para este escenario, teniendo en cuenta que para ciertos periodos de tiempo puede alcanzar un valor mínimo de alrededor 500 pb y para otros periodos, alcanzar a casi los 1000 pb, pero no superarlo. 
+
+#### Mejor Caso
+
+![07BootMejor](https://user-images.githubusercontent.com/51028737/190864580-f4a66c81-e430-40fe-bfd6-a40e33c36d74.png)
+
+### Peor Caso
+
+![08BootPeor](https://user-images.githubusercontent.com/51028737/190864599-029ca1f3-7425-4cc5-a4af-82063463aba1.png)
+
+
 ## Predicción de la Precipitación
 
 
@@ -86,5 +111,46 @@ Para esta aplicación se analizan las variables meteorológicas con la finalidad
 Para ello, se han tomado datos meteorológicos recolectados  desde la página de la \href{https://power.larc.nasa.gov/data-access-viewer/}{\underline{NASA}} obteniendo información diaria durante \(10\) años desde \((01/1/2010)\) hasta  \((31/12/2020)\) las cuales se muestran las variables meteorológicas descritas:
 
 ![tres_final](https://user-images.githubusercontent.com/51028737/190863581-2ce8c916-52f2-4302-a3fe-51b4a25273f8.png)
+
+### Análisis Funcional para la Temperatura
+
+El análisis se centra en el promedio diario de la Temperatura entre los años \(2010\) y \(2020\), de los \(25\) cantones de Ecuador estratégicamente ubicados por su alta productividad en maíz. La idea es utilizar la variable dada por \(365\) observaciones en \(25\) lugares para reconstruir la forma funcional de las muestras a partir de bases de Fourier. 
+
+![temp_original_df](https://user-images.githubusercontent.com/51028737/190863899-2b1bf1dd-cfe7-4c03-84ba-474130fc7f81.png)
+
+Ahora, el método bootstrap con \(1000\) remuestreos se refleja en la siguiente figura:
+
+![BC_temp2](https://user-images.githubusercontent.com/51028737/190863964-7e36f6a2-21ec-42a8-a9f1-8e37334b3790.png)
+
+Luego, los datos atípicos hallados en el caso de la Temperatura se ven a continuación:
+
+![atipico_temp](https://user-images.githubusercontent.com/51028737/190863997-fc468d24-7322-49a6-9381-e62968af4b56.png)
+
+
+Las funciones indicadas permiten determinar las curvas atípicas en la muestra. En la figura \eqref{atipicos_temp} se obtiene que las curvas atípicas son: la curva \(21\) correspondiente al cantón Loja y Loreto \((25)\). 
+
+Las curvas encontradas intervienen en la estimación de los modelos, por lo que, se procederá a comparar los resultados obtenidos considerando y sin considerar dichas curvas para obtener el mejor ajuste en cada modelo.
+
+### Análisis Funcional para la Velocidad del Viento
+
+El análisis del promedio diario de la Velocidad del Viento entre los años \(2010\) y \(2020\) en los \(25\) cantones de Ecuador. 
+
+![viento_original_df](https://user-images.githubusercontent.com/51028737/190864113-62a0b054-b756-4069-bd48-4c7b668a27b5.png)
+
+El método bootstrap con \(1000\) remuestreos se muestra en la figura:
+
+![BC_viento2](https://user-images.githubusercontent.com/51028737/190864142-efc77ff1-b292-42de-9fa0-589824428233.png)
+
+Los datos atípicos se ve a continuación:
+
+![atipicos_vientos](https://user-images.githubusercontent.com/51028737/190864169-5a37f5bc-dd4d-4424-b872-08f29db33e40.png)
+
+Mediante la primera función se detecta cuatro curvas atípicas correspondientes a Manta \((7)\), Santa Elena \((23)\), Pedernales \((4)\) y Jipijapa \((9)\); mientras que la segunda función no encuentra datos atípicos. Por lo que, no se considera datos atípicos en este caso; sin embargo, existe una curva influyente correspondiente a Loja \((21)\).
+
+### Resultados de la Regresión FLR
+
+Una vez que la base de datos no contiene valores atípicos, se ajustan los modelos de regresión de \textit{FLR} presentados en el Capitulo \ref{Cap3}. Resumiendo, la respuesta escalar es la precipitación, mientras que las covariables explicativas funcionales son la velocidad del viento y la temperatura. El primer modelo ajustado es el que incluye solo una variable explicativa, la temperatura. El segundo modelo también es un modelo \textit{FLR} con una covariable, en este caso se usa la velocidad del viento. Posteriormente, también se ajusta el modelo que considera ambas variables funcionales, temperatura y velocidad del viento, como variables explicativas. Esta extensión de los modelos tradicionales de regresión funcional, consistente en la introducción de más de una covariable (concretamente la temperatura y la velocidad del viento), es otra aportación del presente trabajo.
+
+![regFLR](https://user-images.githubusercontent.com/51028737/190864388-3b3ffbdd-86f3-452a-8a84-03495a82f086.png)
 
 
