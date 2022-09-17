@@ -45,7 +45,7 @@ La notación del producto interno se enfatiza para considerar las conexiones y s
 A lo largo del contenido se presentará la sintaxis en el programa \texttt{RStudio}, en particular, utilizando las librerías {\tt fda} \citep{Ramsay2009} y {\tt fda.usc} \citep{FebreroBande2012}, las cuales se complementan muy bien para desarrollar varias técnicas. Para empezar es la función \texttt{fdata} convierte un objeto de datos de clase: {\tt fd, fds, fts, sfts} o  formatos de tipo {\tt vector, matrix, data.frame} en un objeto de clase \texttt{fdata}.
 
 
-### Métodos de Suavizamiento
+## Métodos de Suavizamiento
 
 El suavizamiento es el método por el cual se identifica cada observación de alta dimensión con una función. El objetivo de este método es construir los datos funcionales a partir de sus observaciones discretas. 
 
@@ -75,7 +75,7 @@ En general los modelos de regresión se utilizan para estudiar la relación entr
 Por estas razones, se analizará teóricamente los Modelo de Regresión Lineal Funcional \textit{(FLR)} con Respuesta Escalar tales como: el modelo \textit{FLR} con Representación en Bases detallado en \cite{Ramsay2009}, el modelo \textit{FLR} con Base por Componentes Principales  Funcionales \textit{(FPC)} propuesto por \cite{Cardot2006}, el modelo \textit{FLR} con Base por Mínimos Cuadrados Parciales Funcionales \textit{(FPLS)} planteado en \cite{Preda2005} y la adaptación del modelo \textit{FLR} con Representación en Bases usando dos covariables funcionales. 
 
 
-## Predicción del Riego Pais en Ecuador
+## Predicción del Riego País en Ecuador
 
 Uno de los indicadores catalogado como el termómetro de la salud de una economía es el {\it riesgo país}. De acuerdo a \cite{Lapitz} este indicador mide la perspectiva de los mercados internacionales frente al cumplimiento de las obligaciones del país, acarreando impactos políticos sociales y económicos, como por ejemplo el nivel de incertidumbre para otorgar un financiamiento al país. Por lo tanto, cuanto más bajo este indicador, los inversionistas  tendrán más confianza de invertir.
 
